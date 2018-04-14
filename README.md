@@ -8,8 +8,14 @@ All files related to Garnet2.0 are located in
 ```
 src/mem/ruby/network/garnet2.0/
 ```
-The main classes in Garnet2.0 are the following
+The following are the main files:
 
-* Router.cc 
+* Router.cc, implements router microarchitecture. 
+* NetworkLink.cc, implement network links to transpose flits.
+* CreditLink.cc, implement credit links to transpose credits. 
+* NetworkInterface.cc, implements communication links between a router and, either, a CPU or Directory. 
+* GarnetNetwork.cc, build and connect all NoC components. 
+* Sconscript, includes files need to by compiled and used by GEM5. 
+So 
 
 
