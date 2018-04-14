@@ -5,6 +5,7 @@ GEM5 simulator dedicated for  computer architecture research that encompass syst
 The main focus of this tutorial is how to run and modify Garnet2.0 as a stand alone in GEM5. Garnet2.0 models the interconnection network in GEM5; it is cyclic accurate, implements the micro-architectural of on-chip network router, and uses GEM5 ruby memory system for topology and routing. I assume you have seccussfully installed GEM5. If not, please visit http://learning.gem5.org/book/index.html. Let us cut the long story short and jump into Garnet2.0 
 ### Garnet2.0 files
 All files related to Garnet are located in 
-'''
+```
 dksodks
-'''
+```
+
