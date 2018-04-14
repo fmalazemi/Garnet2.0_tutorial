@@ -15,7 +15,8 @@ The following are the main files:
 * CreditLink.cc, implement credit links to transpose credits. 
 * NetworkInterface.cc, implements communication links between a router and, either, a CPU or Directory. 
 * GarnetNetwork.cc, build and connect all NoC components. 
-* Sconscript, includes files need to by compiled and used by GEM5. 
-So 
+* Sconscript, includes files need to by compiled and used by GEM5.  
+
+So, if you have a 
 
 
