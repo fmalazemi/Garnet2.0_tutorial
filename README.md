@@ -107,10 +107,18 @@ If the expression is false, assert will send to standard error the input express
 bool process_is_free[100]; 
 ...
 int p = get_next_process_id(); 
-assert(p > 
+assert(p >= 0 && p < 100); 
 process_is_free[p] = false; 
 ...
 ```
+#### `gdb`
+The GNU Project Debugger is extremely helpful for adding breakpoints, stepping, and inspect crashes. Although I'm not an expert in `gnu`, I use it to inspect crashes (i.e. sigmentation fault). It can help you to know exactly which statement caused a segmentation fault. You can debug a program as follows
+```
+bash# gdb program
+(gdb) run [parameters] 
+```
+For more details, please refer to this [tutorial](https://www.tutorialspoint.com/gnu_debugger/index.htm).
+
 
 
 
