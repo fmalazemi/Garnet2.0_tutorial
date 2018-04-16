@@ -89,7 +89,7 @@ As you already know from low-level programming classes, debugging is not a simpl
 #### `printf`
 `printf` can help you to print the content of a variable. From there, you may know if your problem is related to a wrong initialization or out of bound value. As a basic example, 
 ```
-bool process_is_free[100]; // 
+bool process_is_free[100]; 
 ...
 int p = get_next_process_id(); 
 printf("Process ID %d\n", p); 
@@ -104,7 +104,7 @@ void assert( int expression );
 ```
 If the expression is false, assert will send to standard error the input expression, the file name, and line number of that assert; and then call abort function. I use it to validate variable contents. If case something is wrong, I would know directly that I have a problem either with my assumption or the variable content at that specific assert statement. For example, 
 ```
-bool process_is_free[100]; // 
+bool process_is_free[100]; 
 ...
 int p = get_next_process_id(); 
 assert(p > 
