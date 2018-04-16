@@ -84,6 +84,9 @@ Source('Credit.cc')
 ```
 The script is strightforward. To add source file, say `x.cc`, simple add `Source('x.cpp')` in the Scons script. 
 
+### Debuggeing 
+Debugging large C++ applications like GEM5 is tedius. Personally, I mainly use `printf`, `assert`, and, [gdb](https://www.gnu.org/software/gdb/)
+
 
 
 
