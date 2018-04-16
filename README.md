@@ -1,14 +1,14 @@
 # Garnet2.0, A Short tutorial
 ### Introduction
-GEM5 simulator dedicated for  computer architecture research that encompass system and process level microarchitecture. It is a merge of the best aspects of  M5 and GEM5. The simulator is highly confiugrable and includes multiple CPU and ISA models. The project is a result of joined efforts of many companies and schools (AMD, ARM, HP, MIPS, Princeton, MIT, uTexas, wisc, and umich.) Moreover, it is an open source and mainly written in C++ and python.
+GEM5 simulator dedicated to computer architecture research that encompasses system and process level microarchitecture. It is a merge of the best aspects of  M5 and GEM5. The simulator is highly configurable and includes multiple CPU and ISA models. The project is a result of joined efforts of many companies and schools (AMD, ARM, HP, MIPS, Princeton, MIT, uTexas, wisc, and umich.) Moreover, it is an open source and mainly written in C++ and python.
 ### Focus and assumption
-The main focus of this tutorial is how to run and modify Garnet as a stand alone in GEM5. Garnet models the interconnection network in GEM5. It is cyclic accurate, implements the micro-architecture of on-chip network router, and uses GEM5 ruby memory system for topology and routing. I assume you have seccussfully installed GEM5. If not, please visit http://learning.gem5.org/book/index.html. Let us cut the long story short and jump into Garnet
+The main focus of this tutorial is how to run and modify Garnet as a stand-alone in GEM5. Garnet models the interconnection network in GEM5. It is cyclic accurate, implements the micro-architecture of on-chip  router, and uses GEM5 ruby memory system for topology and routing. I assume you have successfully installed GEM5. If not, please visit http://learning.gem5.org/book/index.html. Let us cut the long story short and jump into Garnet
 ### Compile and first run 
-To run Garnet as a stand alone, you first need to compile it with the following command 
+To run Garnet as a stand-alone, you first need to compile it with the following command 
 ```
 scons build/NULL/gem5.debug PROTOCOL=Garnet_standalone    
 ```
-GEM5 includes a template configruation file to run Garnet as a stand alone. This file is located in
+GEM5 includes a template configuration file to run Garnet as a stand-alone. This file is located in
 ```
 configs/example/garnet_synth_traffic.py
 ```
@@ -52,7 +52,7 @@ src/mem/ruby/network/garnet2.0/
 In this folder, the NoC and the router micro-architecture is implemented. 
 
 ### Scons script
-New Source files will be compiled into GEM5 only if they are added to the [Scons](http://www.scons.org) script in the folder where the source file resides. [Scons](http://www.scons.org) is a modern software construct tool (similar to [Make](https://en.wikipedia.org/wiki/Make_(software))); it's scripts are written in pytho. In GEM5, any folder that includes a [Scons](http://www.scons.org) script file will be compiled into GEM5 according to the scripts content. Let us take the `Scons` script in  Garnet folder as an example. This script is located in
+New Source files will be compiled into GEM5 only if they are added to the [Scons](http://www.scons.org) script in the folder where the source file resides. [Scons](http://www.scons.org) is a modern software construct tool (similar to [Make](https://en.wikipedia.org/wiki/Make_(software))); it's scripts are written in python. In GEM5, any folder that includes a [Scons](http://www.scons.org) script file will be compiled into GEM5 according to the scripts content. Let us take the `Scons` script in  Garnet folder as an example. This script is located in
 ```
 src/mem/ruby/network/garnet2.0/Sconscript
 ```
@@ -84,8 +84,36 @@ Source('Credit.cc')
 ```
 The script is strightforward. To add source file, say `x.cc`, simple add `Source('x.cpp')` in the Scons script. 
 
-### Debuggeing 
-As you already know from low level programming classes, debugging is a simple task to resolve. For large applications, like GEM5, is very tedius and time consuming. Personally, I mainly use `printf`, `assert`, and, `[gdb]`(https://www.gnu.org/software/gdb/) (GNU Project Debugger) to debug C++ application. Also, following code convinsion and style of an application can occasionally help esspecially if you ask others to look into your code for help or recommandation. With all that, I still, from time to time, get tease by silly bug I overlooked. Let me give you quick hints on how I use quick `printf`, `assert`, and `gdb`  
+### Debugging 
+As you already know from low-level programming classes, debugging is not a simple task. For large applications, like GEM5, a bug may occur anywhere in any file. As a result, it is very tedius and, sometimes, very time-consuming. Personally, I mainly use `printf`, `assert`, and, [gdb](https://www.gnu.org/software/gdb/) (GNU Project Debugger) to debug a C++ application. Also, following code conventions and style of an application can occasionally help especially if you ask others to look into your code for help or recommendation. With all that, I still, from time to time, get tease by silly bugs. For now, let me give you quick hints on how I use  `printf`, `assert`, and `gdb`.
+#### `printf`
+`printf` can help you to print the content of a variable. From there, you may know if your problem is related to a wrong initialization or out of bound value. As a basic example, 
+```
+bool process_is_free[100]; // 
+...
+int p = get_next_process_id(); 
+printf("Process ID %d\n", p); 
+process_is_free[p] = false; 
+...
+```
+In the above code, if we get segmentation fault here. Then, probably, the value of `p` is wrong. To check the value we simply print its value and check its output. If `p` was not in the proper range, then we get a hint that the bug might be in the function `get_next_process_id()`. However, If you have lots of content from the program output, I would be hard to follow your debugging outputs. So the best, in my opinion, is to stop the program at a suspicious location using `assert` statement. 
+#### assert
+Assert function takes an expression.
+```
+void assert( int expression ); 
+```
+If the expression is false, assert will send to standard error the input expression, the file name, and line number of that assert; and then call abort function. I use it to validate variable contents. If case something is wrong, I would know directly that I have a problem either with my assumption or the variable content at that specific assert statement. For example, 
+```
+bool process_is_free[100]; // 
+...
+int p = get_next_process_id(); 
+assert(p > 
+process_is_free[p] = false; 
+...
+```
+
+
+
 
 
 
