@@ -85,7 +85,7 @@ Source('Credit.cc')
 The script is strightforward. To add source file, say `x.cc`, simple add `Source('x.cpp')` in the Scons script. 
 
 ### Debuggeing 
-Debugging large C++ applications like GEM5 is tedius. Personally, I mainly use `printf`, `assert`, and, [gdb](https://www.gnu.org/software/gdb/)
+As you already know from low level programming classes, debugging is a simple task to resolve. For large applications, like GEM5, is very tedius and time consuming. Personally, I mainly use `printf`, `assert`, and, `[gdb]`(https://www.gnu.org/software/gdb/) (GNU Project Debugger) to debug C++ application. Also, following code convinsion and style of an application can occasionally help esspecially if you ask others to look into your code for help or recommandation. With all that, I still, from time to time, get tease by silly bug I overlooked. Let me give you quick hints on how I use quick `printf`, `assert`, and `gdb`  
 
 
 
