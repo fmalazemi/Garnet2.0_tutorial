@@ -114,13 +114,19 @@ process_is_free[p] = false;
 #### `gdb`
 The GNU Project Debugger is extremely helpful for adding breakpoints, stepping, and inspect crashes. Although I'm not an expert in `gnu`, I use it to inspect crashes (i.e. sigmentation fault). It can help you to know exactly which statement caused a segmentation fault. You can debug a program as follows
 ```
-bash# gdb program
-(gdb) run [parameters] 
+bash# gdb program.cc      
+(gdb) run [program.cc parameters] 
 ```
 For more details, please refer to this [tutorial](https://www.tutorialspoint.com/gnu_debugger/index.htm).
 
-
-
+#### Further resources
+* http://tusharkrishna.ece.gatech.edu/teaching/garnet_gt/
+* http://learning.gem5.org/book/index.html
+* http://learning.gem5.org/index.html
+* http://www.gem5.org/Garnet2.0
+* http://www.gem5.org/Interconnection_Network
+* http://www.gem5.org/Garnet_Synthetic_Traffic
+* http://synergy.ece.gatech.edu/wp-content/uploads/sites/332/2017/09/Garnet2.0-Tutorial_gem5-workshop_ARM-Rsh-Summit2017.pdf
 
 
 
