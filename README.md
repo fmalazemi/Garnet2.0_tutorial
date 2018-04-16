@@ -45,22 +45,49 @@ The above command will run Garnet as a stand alone with the following configurat
 * [--vcs-per-vnet=4] number of VCs per vitrual network
 
 ### Garnet Source Files
-All files related to Garnet2.0 are located in 
+Garnet2.0 is written in `C++` and uses python to pass the configuration parameters to the `C++` objects. All the files are available in  
 ```
 src/mem/ruby/network/garnet2.0/
 ```
-The following are the main files:
-* Router.cc, implements router microarchitecture. 
-* NetworkLink.cc, implement network links to transpose flits.
-* CreditLink.cc, implement credit links to transpose credits. 
-* NetworkInterface.cc, implements communication links between a router and, either, a CPU or Directory. 
-* GarnetNetwork.cc, build and connect all NoC components. 
-* Sconscript, includes files need to by compiled and used by GEM5.  
+In this folder, the NoC and the router micro-architecture is implemented. 
 
-The configuration file is located in 
+### Scons script
+New Source files will be compiled into GEM5 only if they are added to the [Scons](http://www.scons.org) script in the folder where the source file resides. [Scons](http://www.scons.org) is a modern software construct tool (similar to [Make](https://en.wikipedia.org/wiki/Make_(software))); it's scripts are written in pytho. In GEM5, any folder that includes a [Scons](http://www.scons.org) script file will be compiled into GEM5 according to the scripts content. Let us take the `Scons` script in  Garnet folder as an example. This script is located in
 ```
-configs/example/garnet_synth_traffic.py
+src/mem/ruby/network/garnet2.0/Sconscript
 ```
+It includes the following content
+```
+Import('*')
+
+if env['PROTOCOL'] == 'None':
+    Return()
+
+SimObject('GarnetLink.py')
+SimObject('GarnetNetwork.py')
+
+Source('GarnetLink.cc')
+Source('GarnetNetwork.cc')
+Source('InputUnit.cc')
+Source('NetworkInterface.cc')
+Source('NetworkLink.cc')
+Source('OutVcState.cc')
+Source('OutputUnit.cc')
+Source('Router.cc')
+Source('RoutingUnit.cc')
+Source('SwitchAllocator.cc')
+Source('CrossbarSwitch.cc')
+Source('VirtualChannel.cc')
+Source('flitBuffer.cc')
+Source('flit.cc')
+Source('Credit.cc')
+```
+The script is strightforward. To add source file, say `x.cc`, simple add `Source('x.cpp')` in the Scons script. 
+
+
+
+
+
 
 
 
