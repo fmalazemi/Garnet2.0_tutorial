@@ -97,7 +97,7 @@ process_is_free[p] = false;
 ...
 ```
 In the above code, if we get segmentation fault here. Then, probably, the value of `p` is wrong. To check the value we simply print its value and check its output. If `p` was not in the proper range, then we get a hint that the bug might be in the function `get_next_process_id()`. However, If you have lots of content from the program output, I would be hard to follow your debugging outputs. So the best, in my opinion, is to stop the program at a suspicious location using `assert` statement. 
-#### assert
+#### `assert`
 Assert function takes an expression.
 ```
 void assert( int expression ); 
